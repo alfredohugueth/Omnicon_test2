@@ -1,9 +1,9 @@
 import { type } from "os";
-import { Column, PrimaryGeneratedColumn, Entity, OneToMany, ManyToOne } from "typeorm";
+import { Column, PrimaryGeneratedColumn, Entity, OneToMany, ManyToOne, BaseEntity } from "typeorm";
 import { VideoJuego } from "./videoJuego.entity";
 
 @Entity()
-export class EmpresaDesarrolladora
+export class EmpresaDesarrolladora extends BaseEntity
 {
 
     @PrimaryGeneratedColumn()
