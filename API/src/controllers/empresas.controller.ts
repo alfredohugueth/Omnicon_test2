@@ -21,7 +21,8 @@ export class EmpresasController
             return res.status( HttpStatusCode.NOT_FOUND ).json({
 
                 ok : false,
-                msg : 'No se encontró ninguna empresa con este Id.'
+                msg : 'No se encontró ninguna empresa con este Id.',
+                uid
           
             })
         } 
@@ -65,4 +66,5 @@ export class EmpresasController
         })
 
     }
+    
 }
