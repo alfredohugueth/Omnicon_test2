@@ -1,0 +1,85 @@
+
+<p class="h3 text-center"> Crear Juego </p>
+<form class="form-horizontal form-material"
+      id="videoGameForm"
+      [formGroup]="crearVideoJuego"
+      (ngSubmit)="crearJuego()">
+
+      <div class="form-group">
+          
+          <div class="col-xs-12">
+                <input class="form-control" type="text"
+                       formControlName="titulo"
+                       placeholder="Titulo De Juego">
+                
+          </div>
+
+      </div>
+
+      <div class="form-group">
+          
+        <div class="col-xs-12">
+              <input class="form-control" type="number"
+                     formControlName="cantidad_stock"
+                     placeholder="Cantidad Copias Disponibles">
+              
+        </div>
+
+    </div>
+
+    <div class="form-group">
+          
+        <div class="col-xs-12">
+              <input class="form-control" type="date"
+                     formControlName="fecha_salida"
+                     placeholder="Fecha de Estreno">
+              
+        </div>
+
+    </div>
+
+    <div class="form-group">
+          
+        <div class="col-xs-12">
+              <input class="form-control" type="text"
+                     formControlName="plataforma"
+                     placeholder="Plataforma">
+              
+        </div>
+
+    </div>
+
+    <div class="form-group">
+          
+        <div class="col-xs-12">
+              <input class="form-control" type="number"
+                     formControlName="precio"
+                     placeholder="precio del juego">
+              
+        </div>
+
+    </div>
+
+    <div class="form-group">
+          
+        <div class="col-xs-12">
+            <label for="empresa"> Selecciona la empresa desarrolladora </label>
+              <select id="empresa" class="form-control" formControlName='empresa'>
+                  <option *ngFor="let empresa of empresasDisponibles" [value]="empresa.Id_empresa"> {{ empresa.Nombre }}</option>
+              </select>
+              
+        </div>
+
+    </div>
+
+    <div class="text-center">
+
+        <button [disabled]="crearVideoJuego.invalid" class="btn btn-success btn-lg" type="submit">
+            Crear VideoJuego
+        </button>
+
+    </div>
+
+
+
+</form>

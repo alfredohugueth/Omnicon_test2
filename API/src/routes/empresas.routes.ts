@@ -33,6 +33,8 @@ router.post( '/crear',
 ] 
 , empresaController.crearEmpresa );
 
+router.get( '/listar/empresas' , empresaController.listarEmpresas);
+
 
 export default router;
 

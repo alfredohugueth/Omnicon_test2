@@ -66,5 +66,18 @@ export class EmpresasController
         })
 
     }
+
+    public listarEmpresas = async ( req : Request, res : Response ) => {
+        
+        const empresasDB = await EmpresaDesarrolladora.find();
+
+        res.json({
+            
+            ok : true,
+            msg : 'Lista de empresas disponibles',
+            empresasDB
+
+        })
+    }
     
 }

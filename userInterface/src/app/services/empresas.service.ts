@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Empresas } from '../interfaces/empresas';
-import { empresasResponse } from '../interfaces/server-responses';
+import { empresasResponse, listarEmpresasResponse } from '../interfaces/server-responses';
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +26,17 @@ export class EmpresasService {
 
                     )
   }
+
+  listarEmpresas()
+  {
+    return this.http.get<listarEmpresasResponse>( `${this.base_url}/empresas/listar/empresas` )
+                    .pipe(
+
+                      map( (resp ) => resp.empresasDB)
+                      
+
+                    )
+  }
+
+  
 }

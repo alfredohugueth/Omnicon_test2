@@ -22,3 +22,10 @@ export interface empresasResponse extends ServerResponse
     empresaDB : Empresas
 
 }
+
+export interface listarEmpresasResponse extends ServerResponse
+{
+
+    empresasDB : Empresas[]
+
+}

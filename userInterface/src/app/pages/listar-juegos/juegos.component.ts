@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Juego } from 'src/app/interfaces/juego';
 import { VideojuegosService } from 'src/app/services/videojuegos.service';
 
@@ -13,7 +14,7 @@ export class JuegosComponent implements OnInit {
   juego! : Juego;
   titulosTabla : Array<string> = [ 'Título', 'Cantidad Disponible', 'Fecha Salida', 'Plataforma', 'Precio', 'Empresa', 'Acciones'];
 
-  constructor( private juegoService : VideojuegosService ) { }
+  constructor( private juegoService : VideojuegosService, private router : Router ) { }
 
   async ngOnInit()  
   {
@@ -26,6 +27,11 @@ export class JuegosComponent implements OnInit {
 
                         }
                       )
+  }
+
+  abrirFormulario ()
+  {
+    this.router.navigateByUrl( '/products/crear-juego' );
   }
 
 }
