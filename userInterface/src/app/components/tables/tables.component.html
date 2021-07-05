@@ -19,7 +19,7 @@
                 <td> {{ juego.Fecha_salida | date }}</td>
                 <td> {{ juego.Plataforma }}</td>
                 <td> {{ juego.precio }}</td>
-                <td class="clikeable"> {{ juego.empresa.Nombre }}</td>
+                <td class="clikeable" (click)="redireccionarDetallesEmpresa( juego.empresa.Id_empresa )"> {{ juego.empresa.Nombre }}</td>
                 <td> 
                     <button class="btn btn-success"> Comprar </button>
                 </td>

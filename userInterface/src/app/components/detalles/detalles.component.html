@@ -1,0 +1,36 @@
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+        
+            <th *ngFor="let titulo of titulos">
+                {{ titulo }}
+            </th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>
+                {{ contenido.Nombre }}
+            </td>
+
+            <td>
+                {{ contenido.Descripcion }}
+            </td>
+
+            <td>
+                {{ contenido.Inicio_actividades | date}}
+            </td>
+
+            <td>
+                {{ contenido.NIT }}
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+

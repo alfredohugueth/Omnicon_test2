@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmpresaComponent } from './empresa/empresa.component';
-import { FacturasComponent } from './facturas/facturas.component';
-import { JuegosComponent } from './juegos/juegos.component';
+import { DetalleEmpresasComponent } from './detalle-empresas/detalle-empresas.component';
+import { EmpresaComponent } from './listar-empresas/empresa.component';
+import { FacturasComponent } from './listar-facturas/facturas.component';
+import { JuegosComponent } from './listar-juegos/juegos.component';
 import { PagesComponent } from './pages.component';
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
             
             { path : '', component: JuegosComponent },
             { path : 'empresa', component : EmpresaComponent},
-            { path : 'factura', component : FacturasComponent}
+            { path : 'factura', component : FacturasComponent},
+            { path : 'detalles-empresa', component: DetalleEmpresasComponent}
 
         ]
     }

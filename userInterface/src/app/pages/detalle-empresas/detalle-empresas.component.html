@@ -1,0 +1,62 @@
+
+<p class="h2 text-center"> Empresa </p>
+
+<app-detalles [titulos]="titulos" [tipo]="1" [contenido]="empresaMostrada">
+
+</app-detalles>
+
+<p class="h2 text-center">Juegos desarrollados </p>
+
+<ol class="text-center">
+    <li *ngFor="let titulo of empresaMostrada.Titulos_desarrollados">
+        {{ titulo.Titulo }}
+    </li>
+</ol>
+
+<!-- <table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+        
+            <th>
+                Nombre
+            </th>
+            
+            <th>
+                Descripción
+            </th>
+
+            <th>
+                Año de inicio de actividades
+            </th>
+
+            <th>
+                NIT
+            </th>
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>
+                Prueba
+            </td>
+
+            <td>
+                Prueba
+            </td>
+
+            <td>
+                Prueba
+            </td>
+
+            <td>
+                Prueba
+            </td>
+
+        </tr>
+    </tbody>
+</table> -->

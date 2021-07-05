@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Empresas } from 'src/app/interfaces/empresas';
 import { Juego } from 'src/app/interfaces/juego';
+import { EmpresasService } from 'src/app/services/empresas.service';
+import { VideojuegosService } from 'src/app/services/videojuegos.service';
 
 @Component({
   selector: 'app-tables',
@@ -19,7 +22,9 @@ export class TablesComponent implements OnInit {
   public facturas : boolean = false;
 
 
-  constructor() { }
+  constructor( private router : Router, 
+               private juegoService : VideojuegosService,
+               private empresaService : EmpresasService ) { }
 
   ngOnInit(): void {
     
@@ -49,6 +54,15 @@ export class TablesComponent implements OnInit {
       break
 
     }
+  }
+
+  redireccionarDetallesEmpresa( id_empresa : number )
+  {
+    
+    console.log( id_empresa );
+    this.empresaService.id_empresa = id_empresa;
+    this.router.navigateByUrl( '/products/detalles-empresa' );
+
   }
 
 }

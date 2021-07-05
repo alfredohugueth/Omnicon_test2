@@ -1,3 +1,4 @@
+import { Empresas } from "./empresas";
 import { Juego } from "./juego";
 
 
@@ -12,5 +13,12 @@ export interface juegosResponse extends ServerResponse
 {
     
     juegos : Juego[]
+
+}
+
+export interface empresasResponse extends ServerResponse
+{
+    
+    empresaDB : Empresas
 
 }

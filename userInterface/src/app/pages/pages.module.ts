@@ -4,11 +4,12 @@ import { RouterModule } from "@angular/router";
 import { SharedModule } from '../shared/shared.module';
 
 /* Components */
-import { EmpresaComponent } from './empresa/empresa.component';
-import { FacturasComponent } from './facturas/facturas.component';
-import { JuegosComponent } from './juegos/juegos.component';
+import { EmpresaComponent } from './listar-empresas/empresa.component';
+import { FacturasComponent } from './listar-facturas/facturas.component';
+import { JuegosComponent } from './listar-juegos/juegos.component';
 import { PagesComponent } from './pages.component';
 import { ComponentsModule } from '../components/components.module';
+import { DetalleEmpresasComponent } from './detalle-empresas/detalle-empresas.component';
 
 
 
@@ -18,7 +19,8 @@ import { ComponentsModule } from '../components/components.module';
     EmpresaComponent,
     FacturasComponent,
     JuegosComponent,
-    PagesComponent
+    PagesComponent,
+    DetalleEmpresasComponent,
   ],
   exports:[
     EmpresaComponent,
