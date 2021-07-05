@@ -1,0 +1,8 @@
+.clikeable{
+    cursor: pointer;
+    color: black;
+}
+
+.clikeable:hover{
+    color: blue;
+}

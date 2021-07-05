@@ -1,0 +1,35 @@
+
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th *ngFor="let titulo of titulos"> 
+                {{ titulo }}
+            </th>
+        </tr>
+    </thead>
+
+    <tbody *ngIf="juegos">
+        
+            <tr *ngFor="let juego of contenido">
+    
+                <td> {{ juego.Titulo }} </td>
+                <td> {{ juego.Cantidad_stock }}</td>
+                <td> {{ juego.Fecha_salida | date }}</td>
+                <td> {{ juego.Plataforma }}</td>
+                <td> {{ juego.precio }}</td>
+                <td class="clikeable"> {{ juego.empresa.Nombre }}</td>
+                <td> 
+                    <button class="btn btn-success"> Comprar </button>
+                </td>
+    
+            </tr>
+
+        
+    </tbody>
+
+    <tbody *ngIf="empresas">
+
+    </tbody>
+</table>

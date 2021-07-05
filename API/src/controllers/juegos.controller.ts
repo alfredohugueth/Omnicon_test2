@@ -119,6 +119,19 @@ export class JuegosController
 
     }
 
+    public obtenerJuegos = async ( req : Request, res : Response ) => 
+    {
+        const juegos : VideoJuego[] = await VideoJuego.find( { relations : ['empresa'] } );
+        
+        res.json({
+
+            ok : true,
+            msg : 'lista de video Juegos',
+            juegos
+            
+        })
+    }
+
     async filtrarPorTitulo( req : Request, res : Response )
     {
         const filtro : string = req.body.filtro;

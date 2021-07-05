@@ -29,8 +29,7 @@ export class VideoJuego extends BaseEntity
     /* Relación entre tablas */
     @ManyToOne( type => EmpresaDesarrolladora, empresa => empresa.Nombre, {
         
-        eager : true,
-        cascade : true
+        
 
     } )
     @JoinColumn() 

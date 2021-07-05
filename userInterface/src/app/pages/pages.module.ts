@@ -8,6 +8,7 @@ import { EmpresaComponent } from './empresa/empresa.component';
 import { FacturasComponent } from './facturas/facturas.component';
 import { JuegosComponent } from './juegos/juegos.component';
 import { PagesComponent } from './pages.component';
+import { ComponentsModule } from '../components/components.module';
 
 
 
@@ -28,7 +29,8 @@ import { PagesComponent } from './pages.component';
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    ComponentsModule
   ]
 })
 export class PagesModule { }

@@ -51,6 +51,9 @@ router.get( '/filtrar/:metodo',
 /* Obtener Juego */
 router.get( '/:id', verificarID ,juegosController.obtenerJuego );
 
+/* Listar juegos */
+router.get( '/listar/juegos', juegosController.obtenerJuegos );
+
 
 export default router;
 
