@@ -38,6 +38,20 @@ export class VideojuegosService {
   }
 
 
+  crearJuego( data_video_juego : Juego )
+  {
+    return this.http.post( `${this.base_url}/juegos/registrar`, data_video_juego )
+                    .pipe(
+
+                      map(
+                        
+                        (resp : any) => resp.juego
+
+                      )
+                    )
+  }
+
+
 
 
 }
