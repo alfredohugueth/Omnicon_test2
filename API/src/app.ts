@@ -28,7 +28,8 @@ import comprarRouter from "./routes/comprar.routes";
 
 let server:Http.Server
 
-export class App{
+export class App
+{
     
   public app:Application;
   public port:Number | Boolean | String;

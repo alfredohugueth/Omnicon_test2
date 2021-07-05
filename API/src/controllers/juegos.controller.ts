@@ -1,5 +1,6 @@
 
 import { Request, Response } from "express";
+import { Between, Like } from "typeorm";
 import { EmpresaDesarrolladora } from "../database/entities/empresaDesarrolladora.entity";
 import { VideoJuego } from "../database/entities/videoJuego.entity";
 import HttpStatusCode from "../enums/HttpStatusCode";
@@ -60,7 +61,6 @@ export class JuegosController
         {
             case TipoFiltroJuegos.Titulo :
 
-                console.log( 'Filtro por Titulo ');
                 await this.filtrarPorTitulo( req, res );
 
             break;
@@ -84,12 +84,7 @@ export class JuegosController
             break;
         }
     
-        res.json({
-
-            ok : true,
-            msg : 'Filtrar Juego'
-
-        })
+        
 
     }
 
@@ -99,7 +94,7 @@ export class JuegosController
         /* buscamos el juego en nuestra base de datos */
         const uid = parseInt( req.params.id );
 
-        const juegoDB : VideoJuego = await VideoJuego.findOne( { Id_juego : uid } );
+        const juegoDB : VideoJuego = await VideoJuego.findOne( { Id_juego : uid }, { relations : ['empresa'] } );
 
         if ( !juegoDB )
         {
@@ -128,44 +123,148 @@ export class JuegosController
     {
         const filtro : string = req.body.filtro;
         
-        // Creamos una expresión regular para realizar la búsqueda
-        const regexFiltro : any = new RegExp( filtro, 'i' );
-        console.log( regexFiltro );
+        const videoJuego : VideoJuego[] | void = await VideoJuego.find( { Titulo : Like( `%${filtro}%` ) } )
+        .catch( ( err ) => {
+            console.log( 'Error contacta con el administrador' );
+        }); // Usar like 
         
-        const videoJuego : VideoJuego[] = await VideoJuego.find( { Titulo : regexFiltro } );
+        if ( videoJuego )
+        {
 
-        res.json({
-            
-            ok : true,
-            msg : 'El resultado del filtro fue',
-            videoJuego
+            return res.json({
+                
+                ok : true,
+                msg : 'El resultado del filtro fue',
+                videoJuego
+    
+            });
 
-        });
+        } 
+        return res.json({
 
-    }
+            ok : false,
+            msg : 'No existe ningun video Juego con este titulo '
 
-
-    filtrarPorPlataforma( req : Request, res : Response )
-    {
-
-        res.json( {msg : 'Filtro por plataforma '});
-
-
-    }
-
-
-    filtrarPorPrecio( req : Request, res : Response )
-    {
-
-        res.json( {msg : 'Filtro por precio '});
+        }
+        )
 
     }
 
 
-    filtrarPorEmpresa( req : Request, res : Response )
+    async filtrarPorPlataforma( req : Request, res : Response )
+    {
+        const filtro : string = req.body.filtro;
+        
+        const videoJuego : VideoJuego[] | void = await VideoJuego.find( { Plataforma : Like( `%${filtro}%` ) } )
+        .catch( ( err ) => {
+            console.log( 'Error contacta con el administrador' );
+        }); // Usar like 
+        
+        if ( videoJuego )
+        {
+
+            return res.json({
+                
+                ok : true,
+                msg : 'El resultado del filtro fue',
+                videoJuego
+    
+            });
+
+        } 
+        return res.json({
+
+            ok : false,
+            msg : 'No existe ningun video Juego con esta plataforma '
+
+        }
+    )
+
+        
+
+
+    }
+
+
+    async filtrarPorPrecio( req : Request, res : Response )
     {
 
-        res.json( {msg : 'Filtro por empresa '});
+        const filtro : number = req.body.filtro;
+        /* Creamos un rango de precios */
+        const rangoSuperior = filtro + filtro * 0.3;
+        const rangoInferior = filtro - filtro - 0.3;
+
+        const videoJuego : VideoJuego[] | void = await VideoJuego.find( { precio : Between( rangoInferior, rangoSuperior)  } )
+        .catch( ( err ) => {
+            console.log( 'Error contacta con el administrador' );
+        });  
+        
+        if ( videoJuego )
+        {
+
+            return res.json({
+                
+                ok : true,
+                msg : 'El resultado del filtro fue',
+                videoJuego
+    
+            });
+
+        } 
+        return res.json({
+
+            ok : false,
+            msg : 'No existe ningun video Juego con estos precios'
+
+        }
+    )
+
+
+    }
+
+
+    async filtrarPorEmpresa( req : Request, res : Response )
+    {
+
+        const filtro : number = req.body.filtro;
+        
+        const empresa : EmpresaDesarrolladora = await EmpresaDesarrolladora.findOne( { Id_empresa : filtro });
+
+        if  ( !empresa )
+        {
+            return res.status( HttpStatusCode.NOT_FOUND).json({
+                
+                ok : false,
+                msg : 'No existe ninguna empresa registrada con este nombre'
+
+            })
+
+        }
+
+        const videoJuego : VideoJuego[] | void = await VideoJuego.find( { empresa : empresa } )
+        .catch( ( err ) => {
+            console.log( 'Error contacta con el administrador' );
+        });  
+        
+        if ( videoJuego )
+        {
+
+            return res.json({
+                
+                ok : true,
+                msg : 'El resultado del filtro fue',
+                videoJuego
+    
+            });
+
+        } 
+        return res.json({
+
+            ok : false,
+            msg : 'No existe ningun video Juego con estos precios'
+
+        }
+    )
 
     }
 

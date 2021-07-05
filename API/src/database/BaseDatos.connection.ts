@@ -51,6 +51,11 @@ export class BaseDatos
                     entities : [
                         __dirname + '/entities/*.entity{.ts,.js}'
                     ],
+                    migrationsTableName : "tabla_migraciones",
+                    migrations : [ __dirname + '/migrations/*.migration{.ts,.js}' ],
+                    cli : {
+                        "migrationsDir" : __dirname + '/migrations'
+                    },
                     synchronize : true,
                     logging : false
                 }

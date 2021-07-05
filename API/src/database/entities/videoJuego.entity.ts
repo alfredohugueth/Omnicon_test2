@@ -1,6 +1,6 @@
 
 import { type } from "os";
-import { Column, PrimaryGeneratedColumn, Entity, ManyToOne, OneToMany, BaseEntity } from "typeorm";
+import { Column, PrimaryGeneratedColumn, Entity, ManyToOne, OneToMany, BaseEntity, JoinColumn } from "typeorm";
 import { EmpresaDesarrolladora } from "./empresaDesarrolladora.entity";
 
 @Entity()
@@ -27,7 +27,15 @@ export class VideoJuego extends BaseEntity
     precio : number;
 
     /* Relación entre tablas */
-    @ManyToOne( type => EmpresaDesarrolladora, empresa => empresa.Nombre ) 
+    @ManyToOne( type => EmpresaDesarrolladora, empresa => empresa.Nombre, {
+        
+        eager : true,
+        cascade : true
+
+    } )
+    @JoinColumn() 
     empresa : EmpresaDesarrolladora;
+
+
 
 }

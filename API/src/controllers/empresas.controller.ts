@@ -14,7 +14,7 @@ export class EmpresasController
 
         /* Buscamos en nuestra base de datos la empresa que cumpla con estas condiciones */
 
-        const empresaDB = await EmpresaDesarrolladora.findOne( { Id_empresa : uid } );
+        const empresaDB = await EmpresaDesarrolladora.findOne( { Id_empresa : uid }, { relations : [ 'Titulos_desarrollados' ]} );
         
         if( !empresaDB )
         {

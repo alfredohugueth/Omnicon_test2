@@ -1,5 +1,5 @@
 import { type } from "os";
-import { Column, PrimaryGeneratedColumn, Entity, OneToMany, ManyToOne, BaseEntity } from "typeorm";
+import { Column, PrimaryGeneratedColumn, Entity, OneToMany, ManyToOne, BaseEntity, JoinColumn } from "typeorm";
 import { VideoJuego } from "./videoJuego.entity";
 
 @Entity()
@@ -21,7 +21,8 @@ export class EmpresaDesarrolladora extends BaseEntity
     @Column()
     NIT : number;
 
-    @OneToMany( type => VideoJuego, videoJuego => videoJuego.Titulo )
+    @OneToMany( type => VideoJuego, videoJuego => videoJuego.empresa )
+    @JoinColumn()
     Titulos_desarrollados : VideoJuego[];
     
 }
