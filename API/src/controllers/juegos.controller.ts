@@ -210,8 +210,8 @@ export class JuegosController
 
         const filtro : number = req.body.filtro;
         /* Creamos un rango de precios */
-        const rangoSuperior = filtro + filtro * 0.3;
-        const rangoInferior = filtro - filtro - 0.3;
+        const rangoSuperior = filtro + (filtro * 0.3);
+        const rangoInferior = filtro - (filtro * 0.3);
 
         const videoJuego : VideoJuego[] | void = await VideoJuego.find( { where : {precio : Between( rangoInferior, rangoSuperior)}, relations : ["empresa"]  } )
         .catch( ( err ) => {

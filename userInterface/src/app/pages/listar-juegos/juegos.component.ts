@@ -16,7 +16,7 @@ export class JuegosComponent implements OnInit {
 
   constructor( private juegoService : VideojuegosService, private router : Router ) { }
 
-  async ngOnInit()  
+  ngOnInit() : void  
   {
     this.juegoService.obtenerJuegos()
                       .subscribe( ( resp : Juego[] )  => 
