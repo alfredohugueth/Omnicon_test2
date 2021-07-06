@@ -10,6 +10,7 @@ import { FacturasService } from 'src/app/services/facturas.service';
 import { VideojuegosService } from 'src/app/services/videojuegos.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-tables',
   templateUrl: './tables.component.html',
@@ -157,6 +158,15 @@ export class TablesComponent implements OnInit {
                         
                       })
     return;
+  }
+
+  organizar()
+  {
+    this.contenido.sort( ( a : Juego, b : Juego ) => {
+      if ( a.Plataforma > b.Plataforma ) return -1
+      if ( b.Plataforma > a.Plataforma ) return 1
+      return 0
+    })
   }
     
   

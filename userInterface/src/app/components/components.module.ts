@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { TablesComponent } from './tables/tables.component';
 import { DetallesComponent } from './detalles/detalles.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon'; 
+
+ 
 
 
 
@@ -14,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
   exports : [ 
     TablesComponent,

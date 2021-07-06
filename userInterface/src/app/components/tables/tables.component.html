@@ -17,7 +17,8 @@
     <thead>
         <tr>
             <th *ngFor="let titulo of titulos"> 
-                {{ titulo }}
+                {{ titulo }} <mat-icon class="clikeable" *ngIf="titulo == 'Plataforma'" (click)="organizar()"> keyboard_arrow_down </mat-icon>
+
             </th>
         </tr>
     </thead>
@@ -29,7 +30,7 @@
                 <td> {{ juego.Titulo }} </td>
                 <td> {{ juego.Cantidad_stock }}</td>
                 <td> {{ juego.Fecha_salida | date }}</td>
-                <td> {{ juego.Plataforma }}</td>
+                <td> {{ juego.Plataforma }} </td>
                 <td> {{ juego.precio | currency }}</td>
                 <td class="clikeable" (click)="redireccionarDetallesEmpresa( juego.empresa.Id_empresa )"> {{ juego.empresa.Nombre }}</td>
                 <td> 

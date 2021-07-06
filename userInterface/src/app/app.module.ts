@@ -7,6 +7,8 @@ import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from "@angular/common/http";
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -23,6 +25,8 @@ import { HttpClientModule } from "@angular/common/http";
     AppRoutingModule,
     SharedModule,
     PagesModule,
+    NoopAnimationsModule,
+    
   ],
   bootstrap: [AppComponent]
 })
