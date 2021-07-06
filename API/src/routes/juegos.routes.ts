@@ -39,7 +39,7 @@ router.post( '/registrar',
 ,juegosController.registrarJuegos );
 
 /* Filtrar Juego */
-router.get( '/filtrar/:metodo', 
+router.post( '/filtrar/:metodo', 
 [
     
     validarTipoFiltro,

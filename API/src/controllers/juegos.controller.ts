@@ -136,7 +136,11 @@ export class JuegosController
     {
         const filtro : string = req.body.filtro;
         
-        const videoJuego : VideoJuego[] | void = await VideoJuego.find( { Titulo : Like( `%${filtro}%` ) } )
+        const videoJuego : VideoJuego[] | void = await VideoJuego.find( {
+              
+            where: {Titulo : Like( `%${filtro}%` )},
+            relations: [ "empresa" ] 
+        } )
         .catch( ( err ) => {
             console.log( 'Error contacta con el administrador' );
         }); // Usar like 
@@ -168,7 +172,9 @@ export class JuegosController
     {
         const filtro : string = req.body.filtro;
         
-        const videoJuego : VideoJuego[] | void = await VideoJuego.find( { Plataforma : Like( `%${filtro}%` ) } )
+        const videoJuego : VideoJuego[] | void = await VideoJuego.find( { 
+            where: {Plataforma : Like( `%${filtro}%` )},
+            relations : ["empresa"] } )
         .catch( ( err ) => {
             console.log( 'Error contacta con el administrador' );
         }); // Usar like 
@@ -207,7 +213,7 @@ export class JuegosController
         const rangoSuperior = filtro + filtro * 0.3;
         const rangoInferior = filtro - filtro - 0.3;
 
-        const videoJuego : VideoJuego[] | void = await VideoJuego.find( { precio : Between( rangoInferior, rangoSuperior)  } )
+        const videoJuego : VideoJuego[] | void = await VideoJuego.find( { where : {precio : Between( rangoInferior, rangoSuperior)}, relations : ["empresa"]  } )
         .catch( ( err ) => {
             console.log( 'Error contacta con el administrador' );
         });  
@@ -239,9 +245,9 @@ export class JuegosController
     async filtrarPorEmpresa( req : Request, res : Response )
     {
 
-        const filtro : number = req.body.filtro;
+        const filtro : string = req.body.filtro;
         
-        const empresa : EmpresaDesarrolladora = await EmpresaDesarrolladora.findOne( { Id_empresa : filtro });
+        const empresa : EmpresaDesarrolladora = await EmpresaDesarrolladora.findOne( { Nombre : Like( `%${filtro}%` ) });
 
         if  ( !empresa )
         {
@@ -254,7 +260,7 @@ export class JuegosController
 
         }
 
-        const videoJuego : VideoJuego[] | void = await VideoJuego.find( { empresa : empresa } )
+        const videoJuego : VideoJuego[] | void = await VideoJuego.find( { where : {empresa : empresa}, relations:["empresa"] } )
         .catch( ( err ) => {
             console.log( 'Error contacta con el administrador' );
         });  
