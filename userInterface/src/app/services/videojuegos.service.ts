@@ -30,7 +30,8 @@ export class VideojuegosService {
     return this.http.get<juegosResponse>( `${this.base_url}/juegos/listar/juegos` )
                     .pipe(
                       
-                      map( resp => resp.juegos )
+                      map( resp => resp.juegos ),
+                      map( resp => resp.filter( res => res.Cantidad_stock > 0))
 
                     )
                     

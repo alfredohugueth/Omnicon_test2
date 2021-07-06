@@ -6,7 +6,9 @@ import { Empresas } from 'src/app/interfaces/empresas';
 import { Juego } from 'src/app/interfaces/juego';
 import { ComprarComponent } from 'src/app/pages/comprar/comprar.component';
 import { EmpresasService } from 'src/app/services/empresas.service';
+import { FacturasService } from 'src/app/services/facturas.service';
 import { VideojuegosService } from 'src/app/services/videojuegos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tables',
@@ -23,14 +25,16 @@ export class TablesComponent implements OnInit {
   public juegos : boolean = false;
   public empresas : boolean = false;
   public facturas : boolean = false;
-  public juego! : Juego;
-  public cantidadIngresada! : string;
+  public juego! : any;
+  public cantidadIngresada : string = '0';
   closeResult!: string;
+  valorDefecto : string = '1';
+  cargando : boolean = false;
 
   public comprarVideoJuego = this.fb.group({
 
     cantidad : ['', Validators.required ],
-    titulo : ['', Validators.required ]
+    
     
 
   })
@@ -41,7 +45,8 @@ export class TablesComponent implements OnInit {
                private juegoService : VideojuegosService,
                private empresaService : EmpresasService,
                private modalService : NgbModal,
-               private fb : FormBuilder ) { }
+               private fb : FormBuilder,
+               private facturaService : FacturasService ) { }
 
   ngOnInit(): void {
     
@@ -83,9 +88,12 @@ export class TablesComponent implements OnInit {
   }
 
   
-  comprarJuego(content: any, data : Juego) {
+  comprarJuego(content: any, data : any) {
     console.log( content );
     this.juego = data;
+    console.log(this.juego)
+    this.valorDefecto = (parseInt(this.juego.Cantidad_stock)/2).toString();
+    this.cantidadIngresada = this.valorDefecto;
     this.modalService.open( content ) 
   };
 
@@ -93,8 +101,32 @@ export class TablesComponent implements OnInit {
   {
     
     console.log( 'Cambio valor ');
-    this.cantidadIngresada = this.comprarVideoJuego.value;
+    this.cantidadIngresada = this.comprarVideoJuego.value.cantidad;
     console.log( this.cantidadIngresada );
+    
+  }
+
+
+  finalizarCompra()
+  {
+
+    this.cargando = true;
+    console.log('Click a comprar');
+    this.facturaService.comprarProducto( this.juego, (this.comprarVideoJuego.value.cantidad || this.cantidadIngresada) )
+                       .subscribe( resp =>
+                        {
+
+                          this.cargando = false;
+                          console.log( resp );
+                          this.modalService.dismissAll();
+                          this.juegoService.obtenerJuegos()
+                                           .subscribe( resp =>
+                                            {
+                                              this.contenido = resp;
+                                            })
+                          Swal.fire('Estado de compra', 'La compra del producto fue todo un éxito', 'success');
+
+                        })
     
   }
     
