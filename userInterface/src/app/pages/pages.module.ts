@@ -12,6 +12,7 @@ import { PagesComponent } from './pages.component';
 import { ComponentsModule } from '../components/components.module';
 import { DetalleEmpresasComponent } from './detalle-empresas/detalle-empresas.component';
 import { CrearJuegoComponent } from './crear-juego/crear-juego.component';
+import { ComprarComponent } from './comprar/comprar.component';
 
 
 
@@ -24,6 +25,7 @@ import { CrearJuegoComponent } from './crear-juego/crear-juego.component';
     PagesComponent,
     DetalleEmpresasComponent,
     CrearJuegoComponent,
+    ComprarComponent,
   ],
   exports:[
     EmpresaComponent,

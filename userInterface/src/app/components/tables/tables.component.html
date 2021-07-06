@@ -21,7 +21,7 @@
                 <td> {{ juego.precio }}</td>
                 <td class="clikeable" (click)="redireccionarDetallesEmpresa( juego.empresa.Id_empresa )"> {{ juego.empresa.Nombre }}</td>
                 <td> 
-                    <button class="btn btn-success"> Comprar </button>
+                    <button (click)="comprarJuego( content, juego )" class="btn btn-success"> Comprar </button>
                 </td>
     
             </tr>
@@ -33,3 +33,31 @@
 
     </tbody>
 </table>
+
+
+
+
+<ng-template  #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Comprar Producto</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form class="form-horizontal form-material" [formGroup]="comprarVideoJuego">
+        <div class="form-group">
+          <label for="cantidad"> Cantidad de unidades deseadas </label>
+          <input type="range" formControlName="cantidad" (change)="actualizarValor()" id="cantidad" class="form-control" min="0" [max]="juego.cantidad_stock" step="1">
+            
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Comprar</button>
+    </div>
+  </ng-template>
+
+
+
+

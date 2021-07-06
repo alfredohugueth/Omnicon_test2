@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TablesComponent } from './tables/tables.component';
 import { DetallesComponent } from './detalles/detalles.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,10 +12,14 @@ import { DetallesComponent } from './detalles/detalles.component';
     DetallesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports : [ 
     TablesComponent,
-    DetallesComponent ]
+    DetallesComponent,
+    
+   ]
 })
 export class ComponentsModule { }
