@@ -19,13 +19,13 @@ const routes: Routes = [
             
             { path : '', component: JuegosComponent },
             { path : 'empresa', component : EmpresaComponent},
-            { path : 'factura', component : FacturasComponent},
             { path : 'detalles-empresa', component: DetalleEmpresasComponent},
             { path : 'crear-juego', component : CrearJuegoComponent},
             
 
         ]
-    }
+    },
+    { path: 'factura', component:FacturasComponent }
 
 ];
 

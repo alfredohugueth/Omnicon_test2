@@ -1,5 +1,17 @@
 
-
+<div class="container text-center mt-5" *ngIf="juegos">
+    <label for="tipo_filtro"> Selecciona el tipo de filtro deseado </label>
+    <br>
+    <select id="tipo_filtro" [(ngModel)]="tipoFiltro" class="form-select form-select-sm">
+      <option [value]="1" selected > Título </option>
+      <option [value]="2" de> Plataforma </option>
+      <option [value]="3"> Precio </option>
+      <option [value]="4"> Empresa </option>
+    </select>
+    <input type="text" [(ngModel)]="cajaTexto" class="form-control mt-5" placeholder="Ingresa el Titulo, Plataforma, Precio ó empresa cuyos juegos quieres ver ">
+    <button (click)="ejecutarFiltro()" class="btn btn-info mt-4"> Filtrar </button>
+  
+</div>
 <table class="table table-bordered">
 
     <thead>
@@ -18,7 +30,7 @@
                 <td> {{ juego.Cantidad_stock }}</td>
                 <td> {{ juego.Fecha_salida | date }}</td>
                 <td> {{ juego.Plataforma }}</td>
-                <td> {{ juego.precio }}</td>
+                <td> {{ juego.precio | currency }}</td>
                 <td class="clikeable" (click)="redireccionarDetallesEmpresa( juego.empresa.Id_empresa )"> {{ juego.empresa.Nombre }}</td>
                 <td> 
                     <button (click)="comprarJuego( content, juego )" class="btn btn-success"> Comprar </button>
@@ -29,7 +41,17 @@
         
     </tbody>
 
-    <tbody *ngIf="empresas">
+    <tbody *ngIf="facturas">
+
+      <tr *ngFor="let factura of contenido">
+
+        <td> {{ factura.Id_compra }}</td>
+        <td> {{ factura.Fecha_compra | date}}</td>
+        <td> {{ factura.Cantidad_adquirida }}</td>
+        <td> {{ factura.Titulo_juego }}</td>
+        <td> {{ factura.Precio_compra | currency}}</td>
+
+      </tr>
 
     </tbody>
 </table>

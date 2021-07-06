@@ -52,6 +52,28 @@ export class VideojuegosService {
                     )
   }
 
+  filtrarJuegos( tipo_filtro : number, filtro : any )
+  {
+    
+    console.log( tipo_filtro )
+    console.log( filtro );
+
+    if ( tipo_filtro == 3 )
+    {
+      
+      filtro = parseInt( filtro );
+    
+    }
+
+    return this.http.post( `${this.base_url}/juegos/filtrar/${ tipo_filtro }`, { filtro })
+                    .pipe(
+                      
+                      map( (resp : any ) => resp.videoJuego)
+
+                    )
+
+  }
+
 
 
 

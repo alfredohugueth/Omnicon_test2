@@ -30,6 +30,8 @@ export class TablesComponent implements OnInit {
   closeResult!: string;
   valorDefecto : string = '1';
   cargando : boolean = false;
+  public tipoFiltro! : string;
+  public cajaTexto! : string;
 
   public comprarVideoJuego = this.fb.group({
 
@@ -38,8 +40,6 @@ export class TablesComponent implements OnInit {
     
 
   })
-
-
 
   constructor( private router : Router, 
                private juegoService : VideojuegosService,
@@ -128,6 +128,35 @@ export class TablesComponent implements OnInit {
 
                         })
     
+  }
+
+  ejecutarFiltro()
+  {
+    console.log( 'Ejecutar filtro ');
+    const tipo_filtro : number = parseInt( this.tipoFiltro );
+
+    if ( isNaN( tipo_filtro ) || this.cajaTexto == undefined )
+    {
+      
+      return Swal.fire('Error', 'Ingresa el tipo de filtro y la cantidad o nombre que deseas filtrar', 'error' );
+
+    }
+
+    if ( tipo_filtro == 3 && isNaN( parseInt(this.cajaTexto) ) )
+    {
+      return Swal.fire('Error', 'Ingresa un valor numérico para filtro por precio', 'error');
+    }
+
+    // Realizamos el envió de la información
+    this.juegoService.filtrarJuegos( tipo_filtro, this.cajaTexto )
+                     .subscribe( resp =>
+                      {
+                        
+                        console.log( resp );
+                        this.contenido = resp;
+                        
+                      })
+    return;
   }
     
   
